@@ -18,11 +18,12 @@ public class EmpDao {
         try{  
             Connection con=EmpDao.getConnection();  
             PreparedStatement ps=con.prepareStatement(  
-                         "insert into user905(name,password,email,country) values (?,?,?,?)");  
-            ps.setString(1,e.getName());  
-            ps.setString(2,e.getPassword());  
-            ps.setString(3,e.getEmail());  
-            ps.setString(4,e.getCountry());  
+                         "insert into user905(id,name,password,email,country) values (?,?,?,?,?)");  
+            ps.setInt(1,e.getId());  
+            ps.setString(2,e.getName());  
+            ps.setString(3,e.getPassword());  
+            ps.setString(4,e.getEmail());  
+            ps.setString(5,e.getCountry());  
               
             status=ps.executeUpdate();  
               
