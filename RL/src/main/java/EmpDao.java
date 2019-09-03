@@ -9,7 +9,7 @@ public class EmpDao {
             //Registrando el manejador
         	Class.forName("org.postgresql.Driver"); 
         	//Estableciendo la conexion
-            con=DriverManager.getConnection("postgresql://localhost:5432/databaserl","postgres","root");  
+            con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/databaserl","postgres","root");  
         }catch(Exception e){System.out.println(e);}  
         return con;  
     }  
