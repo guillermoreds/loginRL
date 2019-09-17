@@ -13,13 +13,14 @@ public class ProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		request.getRequestDispatcher("link.html").include(request, response);
+		request.getRequestDispatcher("linkCRUD.html").include(request, response);
 
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			String name = (String) session.getAttribute("name");
 
 			out.print("Hello, " + name + " Welcome to Profile");
+			request.getRequestDispatcher("registrar.html").include(request, response);
 		} else {
 			out.print("Please login first");
 			request.getRequestDispatcher("login.html").include(request, response);

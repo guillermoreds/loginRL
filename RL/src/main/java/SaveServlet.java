@@ -19,6 +19,7 @@ public class SaveServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String country = request.getParameter("country");
 
+		 
 		Emp e = new Emp();
 		e.setName(name);
 		e.setPassword(password);
