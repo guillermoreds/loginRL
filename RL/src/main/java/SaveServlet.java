@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/SaveServlet")
 public class SaveServlet extends HttpServlet {
@@ -14,6 +15,8 @@ public class SaveServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
+		HttpSession session = request.getSession(false);
+		if (session != null) {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -27,14 +30,18 @@ public class SaveServlet extends HttpServlet {
 		e.setCountry(country);
 
 		int status = EmpDao.save(e);
-		if (status > 0) {
-			out.print("<p>Record saved successfully!</p>");
-			request.getRequestDispatcher("registrar.html").include(request, response);
-		} else {
+			if (status > 0) {
+				out.print("<p>Record saved successfully!</p>");
+				request.getRequestDispatcher("registrar.html").include(request, response);
+			} else {
 			out.println("Sorry! unable to save record");
+			}
+		} else {
+			out.print("Please login first");
+			request.getRequestDispatcher("login.html").include(request, response);
 		}
-
 		out.close();
+		
 	}
 
 }
